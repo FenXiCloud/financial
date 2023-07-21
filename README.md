@@ -1,53 +1,57 @@
-# 纷析云-财务系统
+## 纷析云-财务软件源码[开源版]
 
-## 源码交流群
+### 项目介绍
+**纷析云SAAS云财务软件开源版**<br>
+包含账套、凭证字、科目、期初、币别、账簿、报表、凭证、结账
 
-<div style="text-align: center">
-<img src="code.jpeg" width="200px"/>
-</div>
-
-#### 预览环境
-https://f.fenxi365.com/
-
+### 演示地址
+纷析云开源版<br>
+https://f.fenxi365.com/ <br>
 账号：13456781004 / 密码：123456
-#### 介绍
-云财务软件
 
-目前主要包括以下模块，凭证 账簿 报表 结账 设置
-
-技术选型
-
-1、后端
-
-核心框架：Spring Boot
-
-持久层框架：MyBatis
-
-缓存框架：Redis
-
-短信接口：阿里云
-
-2、前端
-
-前端框架：VUE.JS
-
-3、平台
-
-服务器中间件：SpringBoot
-
-数据库支持：目前仅提供MySql数据库的支持，但不限于数据库
-
-开发环境：Java、IDEA 、Gradle 、Git 、NODE.JS
-
-
-4、版权说明
-
-可以免费使用，不可用于商业销售
-#### 商业版演示地址
-https://f2.fenxi365.com/
+纷析云商业版<br>
+https://f3.fenxi365.com/ <br>
 账号：13456781004 / 密码：123456
-![输入图片说明](image.png)
 
+### 功能对比
+    开源版        商业版[技术重构]
+    凭证 ✔          凭证 ✔ 
+    账簿 ✔          账簿 ✔ 
+    报表 ✔          报表 ✔ 
+    结账 ✔          结账 ✔
+    设置 ✔          设置 ✔ 
+                   资金 ✔ 
+                   固定资产✔ 
+                   发票 ✔
+                   商户管理后台✔
+### 数据结构[实体类]
+    AccountingCategory          辅助核算项目类别
+    AccountingCategoryDetails   辅助核算项目明细
+    AccountSets                 账套
+    Checkout                    结账
+    Currency                    币别
+    ReportTemplate              报表模板
+    ReportTemplateItems         报表项目
+    ReportTemplateItemsFormula  报表公式
+    Subject                     科目
+    User                        用户管理
+    UserAccountSets             用户账套
+    Voucher                     凭证
+    VoucherDetails              凭证明细
+    VoucherDetailsAuxiliary     凭证明细辅助项
+    VoucherTemplate             凭证模板
+    VoucherTemplateDetails      凭证模板明细
+    VoucherWord                 凭证字
+### 技术选型
+
+    JDK版本：1.8
+    核心框架：Spring Boot
+    持久层框架：MyBatis
+    缓存框架：Redis
+    数据库：mysql 5.7+
+    短信接口：阿里云
+    前端框架：VUE
+### 项目截图
 
 ![输入图片说明](https://images.gitee.com/uploads/images/2022/0802/163610_1feaef92_82.png "1.png")
 
@@ -66,3 +70,10 @@ https://f2.fenxi365.com/
 ![输入图片说明](https://images.gitee.com/uploads/images/2022/0802/163730_480f03a3_82.png "8.png")
 
 ![输入图片说明](https://images.gitee.com/uploads/images/2022/0802/163737_30064798_82.png "9.png")
+
+### 版权许可
+    开源不代表免费，纷析云财务 遵循 GPL-3.0 开源协议发布，并提供技术交流学习，但绝不允许修改后和衍生的代码做为闭源的商业软件发布和销售！
+    如果需要将本产品在本地进行任何附带商业化性质行为使用，请联系项目负责人进行商业授权，以遵守 GPL 协议保证您的正常使用。
+### 公司介绍
+
+纷析云（杭州）科技有限公司
