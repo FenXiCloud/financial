@@ -12,17 +12,20 @@ https://f3.fenxi365.com/ <br>
 账号：13456781004 / 密码：123456
 
 ### 功能对比
-    开源版        商业版[技术重构]
-    凭证 ✔          凭证 ✔ 
-    账簿 ✔          账簿 ✔ 
-    报表 ✔          报表 ✔ 
-    结账 ✔          结账 ✔
-    设置 ✔          设置 ✔ 
-                   资金 ✔ 
-                   固定资产✔ 
-                   发票 ✔
-                   商户管理后台✔
+| 开源版| 商业版[技术重构]| 
+|----|----|
+| 凭证 ✔| 凭证 ✔ | 
+| 账簿 ✔| 账簿 ✔ | 
+| 报表 ✔| 报表 ✔ | 
+| 结账 ✔| 结账 ✔| 
+| 设置 ✔ | 设置 ✔ | 
+| | 资金 ✔ | 
+| |  固定资产✔ | 
+| |  发票 ✔| 
+| |  商户管理后台✔| 
+
 ### 数据结构[实体类]
+
     AccountingCategory          辅助核算项目类别
     AccountingCategoryDetails   辅助核算项目明细
     AccountSets                 账套
@@ -41,20 +44,21 @@ https://f3.fenxi365.com/ <br>
     VoucherTemplateDetails      凭证模板明细
     VoucherWord                 凭证字
 ### 技术选型
+||开源版|商业版|
+|----|----|----|
+|JDK版本|1.8|17+|
+|核心框架|Spring Boot2.x|Spring Boot3.1.x|
+|持久层框架|MyBatis|JPA + queryDSL + sqltoy|
+|缓存框架|Redis|Redis|
+|数据库|mysql 5.7+|mysql8.0+|
+|短信接口|阿里云|阿里云|
+|前端框架|Vue2,heyui|Vue3,heyui,layer,vxe-table|
 
-    JDK版本：1.8
-    核心框架：Spring Boot
-    持久层框架：MyBatis
-    缓存框架：Redis
-    数据库：mysql 5.7+
-    短信接口：阿里云
-    前端框架：VUE
 ### 项目截图
 开源版截图<br>
 ![输入图片说明](2.png)
 商业版截图<br>
 ![输入图片说明](1.png)
-
 
 
 ### 版权许可
