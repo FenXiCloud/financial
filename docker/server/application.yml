@@ -1,0 +1,19 @@
+# 生产环境配置
+spring:
+  profiles:
+    active: prod
+  datasource:
+    url: jdbc:mysql://mysql:3306/financial?characterEncoding=UTF-8&useUnicode=true&useSSL=false&serverTimezone=GMT%2B8&allowMultiQueries=true&allowPublicKeyRetrieval=true
+    password: RxESM1QDJV7aPizg
+    username: financial
+  redis:
+    host: 'redis'
+
+aliyun:
+  accessKeyId:
+  accessKeySecret:
+  sms:
+    signature: 纷析云
+    template-code:
+      verification: SMS_175580136
+      register: SMS_183262497

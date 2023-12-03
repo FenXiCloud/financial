@@ -1,0 +1,92 @@
+version: "1.0"
+
+networks:
+  financial-ce:
+    name: financial-ce
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - gateway: ${SUBNET_PREFIX:?SUBNET_PREFIX required}.1
+          subnet: ${SUBNET_PREFIX}.0/24
+    driver_opts:
+      com.docker.network.bridge.name: financial-ce
+
+services:
+  mysql:
+    image: mysql:8.2.0
+    # 容器名(以后的控制都通过这个)
+    container_name: financial_mysql8
+    # 重启策略
+    restart: always
+    ports:
+      - "3307:3306"
+    volumes:
+      # 数据挂载
+      - ./mysql/data/:/var/lib/mysql/
+      # 配置挂载
+      - ./mysql/conf/:/etc/mysql/conf.d/
+      # 初始化目录挂载，注意此处我只跑了这个挂载，只是为了说明其他配置不应该数据初始化
+      - ./mysql/init/:/docker-entrypoint-initdb.d/
+    environment:
+      # 时区上海
+      TZ: Asia/Shanghai
+      # root 密码
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?MYSQL_ROOT_PASSWORD required}
+      # 初始化数据库(后续的初始化sql会在这个库执行)
+      MYSQL_DATABASE: financial
+      # 初始化用户(不能是root 会报错, 后续需要给新用户赋予权限)
+      MYSQL_USER: financial
+      # 用户密码
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:?MYSQL_PASSWORD required}
+    command:
+      --default-authentication-plugin=mysql_native_password
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_general_ci
+      --explicit_defaults_for_timestamp=true
+      --lower_case_table_names=1
+    networks:
+      financial-ce:
+        ipv4_address: ${SUBNET_PREFIX}.2
+
+  redis:
+    image: redis:5.0.12
+    container_name: financial_redis8
+    ports:
+      - 6479:6379
+    volumes:
+      - ./redis:/data
+    networks:
+      financial-ce:
+        ipv4_address: ${SUBNET_PREFIX}.3
+
+  client:
+    container_name: financial_client
+    image: openjdk:8u102
+    restart: always
+    command: java -server -Xms1024m -Xmx1024m -Dspring.config.import=file:/server/application.yml -Dlogging.path=/logs/client.log -Djava.security.egd=file:/dev/./urandom -jar /server/financial.jar
+    ports:
+      - "8888:8012"
+    volumes:
+      - ./server/:/server/
+      - ./logs/:/logs/
+    depends_on:
+      - mysql
+      - redis
+    networks:
+      financial-ce:
+        ipv4_address: ${SUBNET_PREFIX}.5
+
+  nginx:
+    container_name: financial_nginx
+    image: nginx:1.25.2
+    restart: always
+    networks:
+      financial-ce:
+        ipv4_address: ${SUBNET_PREFIX}.6
+    ports:
+      - "88:80"
+    volumes:
+      - ./nginx/vhost:/etc/nginx/conf.d
+      - ./nginx/wwwroot:/usr/share/nginx/html:ro
+      - ./nginx/logs:/var/log/nginx
