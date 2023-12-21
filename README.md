@@ -11,7 +11,7 @@
 https://v4.fenxi365.com/ （源码演示版）<br><br>
 
 纷析云渠道版<br>
-https://v4.fenxi365.com/ <br>
+https://f3.fenxi365.com/ <br>
 正式环境，可注册账号直接使用或测试
 
 ### 功能对比
